@@ -147,9 +147,9 @@ function renderGallery() {
   if (galleryPrev) galleryPrev.disabled = activeIndex === 0;
   if (galleryNext)
     galleryNext.disabled = activeIndex === galleryData.length - 1;
-  if (thumbPrev) thumbPrev.disabled = thumbStart === 0;
+  if (thumbPrev) thumbPrev.disabled = activeIndex === 0;
   if (thumbNext)
-    thumbNext.disabled = thumbStart + THUMB_VISIBLE >= galleryData.length;
+    thumbNext.disabled = activeIndex === galleryData.length - 1;
 }
 
 function setActiveSlide(index) {
@@ -176,15 +176,13 @@ if (galleryNext) {
 
 if (thumbPrev) {
   thumbPrev.addEventListener("click", function () {
-    thumbStart = Math.max(0, thumbStart - 1);
-    renderGallery();
+    setActiveSlide(activeIndex - 1);
   });
 }
 
 if (thumbNext) {
   thumbNext.addEventListener("click", function () {
-    thumbStart = Math.min(galleryData.length - THUMB_VISIBLE, thumbStart + 1);
-    renderGallery();
+    setActiveSlide(activeIndex + 1);
   });
 }
 
