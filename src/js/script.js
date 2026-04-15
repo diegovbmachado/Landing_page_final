@@ -148,8 +148,7 @@ function renderGallery() {
   if (galleryNext)
     galleryNext.disabled = activeIndex === galleryData.length - 1;
   if (thumbPrev) thumbPrev.disabled = activeIndex === 0;
-  if (thumbNext)
-    thumbNext.disabled = activeIndex === galleryData.length - 1;
+  if (thumbNext) thumbNext.disabled = activeIndex === galleryData.length - 1;
 }
 
 function setActiveSlide(index) {
