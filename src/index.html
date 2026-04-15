@@ -301,80 +301,68 @@
           </p>
         </div>
 
-        <div class="mt-12 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
-          <div
-            class="overflow-hidden rounded-[2rem] border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800"
-          >
+        <div class="mt-12 max-w-5xl mx-auto">
+          <div class="relative overflow-hidden rounded-[2rem] border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
+            <button
+              id="gallery-prev"
+              type="button"
+              class="absolute left-4 top-1/2 z-20 -translate-y-1/2 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/80 text-gray-800 shadow hover:bg-white dark:bg-gray-900/80 dark:text-white dark:hover:bg-gray-800"
+              aria-label="Anterior"
+            >
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+              </svg>
+            </button>
+            <button
+              id="gallery-next"
+              type="button"
+              class="absolute right-4 top-1/2 z-20 -translate-y-1/2 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/80 text-gray-800 shadow hover:bg-white dark:bg-gray-900/80 dark:text-white dark:hover:bg-gray-800"
+              aria-label="Próximo"
+            >
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </button>
             <img
-              class="w-full h-64 object-cover"
-              src="https://images.unsplash.com/photo-1496317899792-9d7dbcd928a1?auto=format&fit=crop&w=900&q=80"
+              id="gallery-main-image"
+              class="w-full max-h-[560px] object-cover"
+              src="https://images.unsplash.com/photo-1496317899792-9d7dbcd928a1?auto=format&fit=crop&w=1200&q=80"
               alt="Tatuagem no braço"
             />
-            <div class="p-4">
-              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent px-6 py-6 text-white">
+              <h3 id="gallery-main-title" class="text-2xl font-semibold">
                 Traço fino e delicado
               </h3>
-              <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+              <p id="gallery-main-description" class="mt-2 text-sm text-white/90">
                 Detalhes da tattoo com acabamento preciso e suave no contorno.
               </p>
             </div>
           </div>
 
-          <div
-            class="overflow-hidden rounded-[2rem] border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800"
-          >
-            <img
-              class="w-full h-64 object-cover"
-              src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80"
-              alt="Tatuagem no ombro"
-            />
-            <div class="p-4">
-              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                Sombreamento suave
-              </h3>
-              <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                Tatuagens que ganham profundidade natural com sombreados bem
-                trabalhados.
-              </p>
+          <div class="mt-6 flex items-center gap-4">
+            <button
+              id="thumb-prev"
+              type="button"
+              class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-white border border-gray-200 text-gray-800 shadow hover:bg-gray-50 dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800"
+              aria-label="Mostrar miniaturas anteriores"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+              </svg>
+            </button>
+            <div class="flex-1 overflow-hidden">
+              <div id="gallery-thumbnails" class="flex gap-3 transition-all duration-300"></div>
             </div>
-          </div>
-
-          <div
-            class="overflow-hidden rounded-[2rem] border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800"
-          >
-            <img
-              class="w-full h-64 object-cover"
-              src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?auto=format&fit=crop&w=900&q=80"
-              alt="Tatuagem na mão"
-            />
-            <div class="p-4">
-              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                Estilo autoral
-              </h3>
-              <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                Peças únicas feitas para combinar com a personalidade de cada
-                cliente.
-              </p>
-            </div>
-          </div>
-
-          <div
-            class="overflow-hidden rounded-[2rem] border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800"
-          >
-            <img
-              class="w-full h-64 object-cover"
-              src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=900&q=80"
-              alt="Tatuagem no peito"
-            />
-            <div class="p-4">
-              <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                Design com atitude
-              </h3>
-              <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                Tatuagens com contraste e estilo, perfeitas para quem quer
-                causar impacto.
-              </p>
-            </div>
+            <button
+              id="thumb-next"
+              type="button"
+              class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-white border border-gray-200 text-gray-800 shadow hover:bg-gray-50 dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800"
+              aria-label="Mostrar miniaturas seguintes"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </button>
           </div>
         </div>
       </div>
