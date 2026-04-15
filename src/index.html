@@ -303,26 +303,28 @@
 
         <div class="mt-12 max-w-5xl mx-auto">
           <div class="relative mx-auto max-w-sm overflow-hidden rounded-[2rem] border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
-            <button
-              id="gallery-prev"
-              type="button"
-              class="absolute left-4 top-1/2 z-30 -translate-y-1/2 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/80 text-gray-800 shadow hover:bg-white dark:bg-gray-900/80 dark:text-white dark:hover:bg-gray-800"
-              aria-label="Anterior"
-            >
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-              </svg>
-            </button>
-            <button
-              id="gallery-next"
-              type="button"
-              class="absolute right-4 top-1/2 z-30 -translate-y-1/2 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/80 text-gray-800 shadow hover:bg-white dark:bg-gray-900/80 dark:text-white dark:hover:bg-gray-800"
-              aria-label="Próximo"
-            >
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </button>
+            <div class="absolute inset-0 z-30 flex items-center justify-between px-3">
+              <button
+                id="gallery-prev"
+                type="button"
+                class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/80 text-gray-800 shadow hover:bg-white dark:bg-gray-900/80 dark:text-white dark:hover:bg-gray-800"
+                aria-label="Anterior"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+              </button>
+              <button
+                id="gallery-next"
+                type="button"
+                class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/80 text-gray-800 shadow hover:bg-white dark:bg-gray-900/80 dark:text-white dark:hover:bg-gray-800"
+                aria-label="Próximo"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </button>
+            </div>
             <img
               id="gallery-main-image"
               class="mx-auto w-full max-w-sm h-[150px] sm:h-[160px] md:h-[180px] lg:h-[200px] object-cover"
