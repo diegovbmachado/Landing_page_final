@@ -46,28 +46,28 @@ var galleryData = [
   {
     src: "images/mywork/work-01.jpg",
     alt: "Tatuagem no braço",
-    title: "Traço fino e delicado",
+    title: "",
     description:
       "Detalhes da tattoo com acabamento preciso e suave no contorno.",
   },
   {
     src: "images/mywork/work-02.jpg",
     alt: "Tatuagem no ombro",
-    title: "Sombreamento suave",
+    title: "",
+    description:
+      "Baseado em lobo realista com elementos abstratos...",
+  },
+  {
+    src: "images/mywork/work-03.jpg",
+    alt: "Tatuagem na perna",
+    title: "",
     description:
       "Tatuagens que ganham profundidade natural com sombreados bem trabalhados.",
   },
   {
-    src: "images/mywork/work-03.jpg",
-    alt: "Tatuagem na mão",
-    title: "Estilo autoral",
-    description:
-      "Peças únicas feitas para combinar com a personalidade de cada cliente.",
-  },
-  {
     src: "images/mywork/work-04.jpg",
-    alt: "Tatuagem no peito",
-    title: "Design com atitude",
+    alt: "Tatuagem na perna",
+    title: "",
     description:
       "Tatuagens com contraste e estilo, perfeitas para quem quer causar impacto.",
   },
