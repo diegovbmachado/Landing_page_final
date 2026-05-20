@@ -48,14 +48,14 @@ var galleryData = [
     alt: "Tatuagem no braço",
     title: "",
     description:
-      "Detalhes da tattoo com acabamento preciso e suave no contorno.",
+      "Detalhes da tattoo com acabamento preciso e com uma leve suavização no contorno.",
   },
   {
     src: "images/mywork/work-02.jpg",
     alt: "Tatuagem no ombro",
     title: "",
     description:
-      "Baseado em lobo realista com elementos abstratos...",
+      "Baseado em foto de um lobo realista com elementos abstratos sugeridos pelo cliente...",
   },
   {
     src: "images/mywork/work-03.jpg",
@@ -69,7 +69,7 @@ var galleryData = [
     alt: "Tatuagem na perna",
     title: "",
     description:
-      "Tatuagens com contraste e estilo, perfeitas para quem quer causar impacto.",
+      "Tatuagens com contraste, cor  e estilo, perfeitas para quem quer causar impacto.",
   },
 ];
 
@@ -110,7 +110,7 @@ function renderGallery() {
         item.src +
         '" alt="' +
         item.alt +
-        '" class="h-24 w-24 object-cover sm:h-28 sm:w-28" />' +
+        '" class="h-36 w-36 object-cover sm:h-[168px] sm:w-[168px]" />' +
         "</button>"
       );
     })
