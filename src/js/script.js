@@ -1,5 +1,91 @@
 var themeToggleDarkIcon = document.getElementById("theme-toggle-dark-icon");
 var themeToggleLightIcon = document.getElementById("theme-toggle-light-icon");
+var bgToggleBtn = document.getElementById("bg-toggle");
+var bgToggleOffIcon = document.getElementById("bg-toggle-off-icon");
+var bgToggleOnIcon = document.getElementById("bg-toggle-on-icon");
+
+function isStudioBgActive() {
+  return document.body.classList.contains("studio-bg");
+}
+
+function updateBgToggleIcons() {
+  if (!bgToggleOffIcon || !bgToggleOnIcon) return;
+  if (isStudioBgActive()) {
+    bgToggleOffIcon.classList.add("hidden");
+    bgToggleOnIcon.classList.remove("hidden");
+  } else {
+    bgToggleOffIcon.classList.remove("hidden");
+    bgToggleOnIcon.classList.add("hidden");
+  }
+}
+
+function disableStudioBg() {
+  document.body.classList.remove("studio-bg");
+  localStorage.removeItem("studio-bg");
+  updateBgToggleIcons();
+}
+
+function enableStudioBg() {
+  document.body.classList.add("studio-bg");
+  localStorage.setItem("studio-bg", "on");
+  updateBgToggleIcons();
+}
+
+if (localStorage.getItem("studio-bg") === "on") {
+  enableStudioBg();
+} else {
+  updateBgToggleIcons();
+}
+
+if (bgToggleBtn) {
+  bgToggleBtn.addEventListener("click", function () {
+    if (isStudioBgActive()) {
+      disableStudioBg();
+    } else {
+      enableStudioBg();
+    }
+  });
+}
+
+function getNavOffset() {
+  var nav = document.querySelector("nav.studio-nav");
+  return nav ? nav.offsetHeight + 12 : 88;
+}
+
+function scrollToSection(hash, behavior) {
+  if (!hash || hash === "#") return;
+  var target = document.querySelector(hash);
+  if (!target) return;
+  var top =
+    target.getBoundingClientRect().top + window.scrollY - getNavOffset();
+  window.scrollTo({ top: Math.max(0, top), behavior: behavior || "smooth" });
+}
+
+function closeMobileNav() {
+  var menu = document.getElementById("navbar-sticky");
+  var toggle = document.querySelector('[data-collapse-toggle="navbar-sticky"]');
+  if (menu && toggle && window.innerWidth < 768 && !menu.classList.contains("hidden")) {
+    toggle.click();
+  }
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+  anchor.addEventListener("click", function (e) {
+    var href = this.getAttribute("href");
+    if (!href || href === "#" || href.length < 2) return;
+    var target = document.querySelector(href);
+    if (!target) return;
+    e.preventDefault();
+    scrollToSection(href, "smooth");
+    closeMobileNav();
+  });
+});
+
+if (window.location.hash) {
+  requestAnimationFrame(function () {
+    scrollToSection(window.location.hash, "auto");
+  });
+}
 
 // Change the icons inside the button based on previous settings
 if (
@@ -15,6 +101,8 @@ if (
 var themeToggleBtn = document.getElementById("theme-toggle");
 
 themeToggleBtn.addEventListener("click", function () {
+  disableStudioBg();
+
   // toggle icons inside button
   themeToggleDarkIcon.classList.toggle("hidden");
   themeToggleLightIcon.classList.toggle("hidden");

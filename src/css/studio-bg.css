@@ -1,0 +1,410 @@
+/* Modo estúdio — imagem de fundo, granulado e divisões papel rasgado */
+
+#studio-bg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.45s ease, visibility 0.45s ease;
+}
+
+body.studio-bg #studio-bg-layer {
+  opacity: 1;
+  visibility: visible;
+}
+
+body.studio-bg > section,
+body.studio-bg > footer {
+  position: relative;
+  z-index: 1;
+}
+
+body.studio-bg > nav {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 50 !important;
+}
+
+body.studio-bg .studio-section,
+body.studio-bg #hero {
+  scroll-margin-top: 5.5rem;
+}
+
+.studio-bg-photo {
+  position: absolute;
+  inset: 0;
+  background-image: url("../images/studio/hero-bg.jpg");
+  background-size: cover;
+  background-position: center 35%;
+  background-repeat: no-repeat;
+  transform: scale(1.03);
+  filter: grayscale(15%) contrast(1.08) brightness(0.78) saturate(1.15);
+}
+
+.studio-bg-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.72) 0%,
+      rgba(0, 0, 0, 0.38) 45%,
+      rgba(0, 0, 0, 0.12) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.35) 0%,
+      transparent 40%,
+      rgba(0, 0, 0, 0.5) 100%
+    );
+}
+
+.studio-bg-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.16;
+  background-image: url("../images/studio/noise.svg");
+  background-size: 220px 220px;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* ——— Navbar ——— */
+body.studio-bg > nav.studio-nav {
+  background: rgba(0, 0, 0, 0.78) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-color: rgba(255, 199, 44, 0.28) !important;
+}
+
+body.studio-bg > nav a,
+body.studio-bg > nav .text-gray-900,
+body.studio-bg > nav .dark\:text-white {
+  color: #f5f0e6 !important;
+}
+
+body.studio-bg > nav a:not(.bg-blue-700):not(.dark\:bg-blue-600):hover {
+  color: #ffc72c !important;
+}
+
+body.studio-bg > nav a.bg-blue-700,
+body.studio-bg > nav a.dark\:bg-blue-600 {
+  color: #0a0908 !important;
+}
+
+body.studio-bg > nav a.bg-blue-700:hover,
+body.studio-bg > nav a.dark\:bg-blue-600:hover {
+  background-color: #d9a000 !important;
+  color: #0a0908 !important;
+}
+
+body.studio-bg > nav .bg-gray-50,
+body.studio-bg > nav .md\:bg-white,
+body.studio-bg > nav .dark\:bg-gray-800,
+body.studio-bg > nav .md\:dark\:bg-gray-900 {
+  background-color: transparent !important;
+}
+
+/* Modo paleta = fundo escuro → logo para tema escuro (navbar + rodapé) */
+body.studio-bg .logo-theme-light {
+  display: none !important;
+}
+
+body.studio-bg .logo-theme-dark {
+  display: block !important;
+}
+
+/* ——— Seções base ——— */
+body.studio-bg .studio-section {
+  position: relative;
+  overflow: visible;
+  background-color: transparent !important;
+}
+
+/* Hero / Início: foto bem visível, película só à esquerda (legibilidade do texto) */
+body.studio-bg #hero {
+  min-height: min(92vh, 900px);
+  min-height: min(92dvh, 900px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.62) 0%,
+    rgba(0, 0, 0, 0.28) 42%,
+    rgba(0, 0, 0, 0.05) 100%
+  ) !important;
+}
+
+body.studio-bg #hero::before {
+  display: none;
+}
+
+/* Seções escuras (ímpares): sobre a foto + rasgo claro embaixo */
+body.studio-bg section.studio-section:nth-of-type(odd) {
+  background: linear-gradient(
+    180deg,
+    rgba(8, 7, 6, 0.82) 0%,
+    rgba(10, 9, 8, 0.9) 100%
+  ) !important;
+}
+
+body.studio-bg section.studio-section:nth-of-type(odd)::after {
+  content: "";
+  display: block;
+  height: clamp(44px, 8vw, 80px);
+  width: 100%;
+  background: url("../images/studio/torn-to-light.svg") center bottom / 100% 100%
+    no-repeat;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.4));
+  pointer-events: none;
+  margin-top: 0.5rem;
+}
+
+/* Seções “papel” (pares): fundo creme + rasgos */
+body.studio-bg section.studio-section:nth-of-type(even) {
+  background-color: #f5f0e6 !important;
+  margin-top: -3px;
+  padding-top: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+body.studio-bg section.studio-section:nth-of-type(even)::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: clamp(-40px, -6vw, -56px);
+  left: 0;
+  right: 0;
+  height: clamp(40px, 7vw, 72px);
+  background: url("../images/studio/torn-to-light.svg") center top / 100% 100%
+    no-repeat;
+  transform: rotate(180deg);
+  filter: drop-shadow(0 -4px 10px rgba(0, 0, 0, 0.12));
+  pointer-events: none;
+  z-index: 2;
+}
+
+body.studio-bg section.studio-section:nth-of-type(even)::after {
+  content: "";
+  display: block;
+  height: clamp(44px, 8vw, 80px);
+  width: 100%;
+  background: url("../images/studio/torn-to-dark.svg") center bottom / 100% 100%
+    no-repeat;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.25));
+  pointer-events: none;
+  margin-top: 0.5rem;
+}
+
+/* Texto em seções escuras */
+body.studio-bg section.studio-section:nth-of-type(odd) h1,
+body.studio-bg section.studio-section:nth-of-type(odd) h2,
+body.studio-bg section.studio-section:nth-of-type(odd) h3,
+body.studio-bg section.studio-section:nth-of-type(odd) .text-gray-900,
+body.studio-bg section.studio-section:nth-of-type(odd) .dark\:text-white {
+  color: #faf7f0 !important;
+}
+
+body.studio-bg section.studio-section:nth-of-type(odd) p,
+body.studio-bg section.studio-section:nth-of-type(odd) .text-gray-500,
+body.studio-bg section.studio-section:nth-of-type(odd) .text-gray-600,
+body.studio-bg section.studio-section:nth-of-type(odd) .dark\:text-gray-400 {
+  color: #c9b896 !important;
+}
+
+body.studio-bg section.studio-section:nth-of-type(odd) .text-blue-700,
+body.studio-bg section.studio-section:nth-of-type(odd) .dark\:text-blue-500,
+body.studio-bg section.studio-section:nth-of-type(odd) span.text-blue-700 {
+  color: #ffc72c !important;
+}
+
+/* Texto em seções papel */
+body.studio-bg section.studio-section:nth-of-type(even) h1,
+body.studio-bg section.studio-section:nth-of-type(even) h2,
+body.studio-bg section.studio-section:nth-of-type(even) h3,
+body.studio-bg section.studio-section:nth-of-type(even) .text-gray-900,
+body.studio-bg section.studio-section:nth-of-type(even) .dark\:text-white {
+  color: #14100c !important;
+}
+
+body.studio-bg section.studio-section:nth-of-type(even) p,
+body.studio-bg section.studio-section:nth-of-type(even) .text-gray-500,
+body.studio-bg section.studio-section:nth-of-type(even) .dark\:text-gray-400 {
+  color: #4a4035 !important;
+}
+
+body.studio-bg section.studio-section:nth-of-type(even) .text-blue-700,
+body.studio-bg section.studio-section:nth-of-type(even) .dark\:text-blue-500 {
+  color: #c98a00 !important;
+}
+
+/* Cards */
+body.studio-bg section.studio-section:nth-of-type(odd) .bg-gray-50,
+body.studio-bg section.studio-section:nth-of-type(odd) .bg-white,
+body.studio-bg section.studio-section:nth-of-type(odd) .dark\:bg-gray-800 {
+  background-color: rgba(18, 14, 10, 0.88) !important;
+  border-color: rgba(255, 199, 44, 0.22) !important;
+  backdrop-filter: blur(8px);
+}
+
+body.studio-bg section.studio-section:nth-of-type(even) .bg-gray-50,
+body.studio-bg section.studio-section:nth-of-type(even) .bg-white,
+body.studio-bg section.studio-section:nth-of-type(even) .dark\:bg-gray-800 {
+  background-color: rgba(255, 255, 255, 0.82) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+body.studio-bg .border-gray-200,
+body.studio-bg .border-gray-300,
+body.studio-bg .dark\:border-gray-600,
+body.studio-bg .dark\:border-gray-700 {
+  border-color: rgba(255, 199, 44, 0.18) !important;
+}
+
+body.studio-bg section.studio-section:nth-of-type(even) .border-gray-200,
+body.studio-bg section.studio-section:nth-of-type(even) .border-gray-300 {
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Botões estilo Yellow Wolf */
+body.studio-bg .bg-blue-700,
+body.studio-bg .dark\:bg-blue-600,
+body.studio-bg a.bg-blue-700 {
+  background-color: #f4b400 !important;
+  color: #0a0908 !important;
+  border-color: #f4b400 !important;
+}
+
+body.studio-bg .bg-blue-700:hover,
+body.studio-bg .dark\:bg-blue-600:hover {
+  background-color: #d9a000 !important;
+  color: #0a0908 !important;
+}
+
+body.studio-bg a.border-gray-300,
+body.studio-bg a.dark\:border-gray-700 {
+  border-color: #ffc72c !important;
+  color: #ffc72c !important;
+  background: transparent !important;
+}
+
+body.studio-bg a.border-gray-300:hover {
+  background-color: rgba(255, 199, 44, 0.12) !important;
+}
+
+/* Formulário */
+body.studio-bg #contact input,
+body.studio-bg #contact textarea {
+  background-color: rgba(12, 10, 8, 0.9) !important;
+  color: #faf7f0 !important;
+  border-color: rgba(255, 199, 44, 0.3) !important;
+}
+
+body.studio-bg #contact label {
+  color: #e8dcc4 !important;
+}
+
+/* Footer */
+body.studio-bg footer.studio-footer {
+  background: #0a0908 !important;
+  border-top: 3px solid rgba(255, 199, 44, 0.35);
+  margin-top: -2px;
+}
+
+body.studio-bg footer.studio-footer::before,
+body.studio-bg footer.studio-footer::after {
+  display: none;
+}
+
+body.studio-bg footer h2,
+body.studio-bg footer .text-gray-900,
+body.studio-bg footer .dark\:text-white {
+  color: #faf7f0 !important;
+}
+
+body.studio-bg footer p,
+body.studio-bg footer .text-gray-500,
+body.studio-bg footer .text-gray-600,
+body.studio-bg footer a {
+  color: #c9b896 !important;
+}
+
+body.studio-bg footer a:hover {
+  color: #ffc72c !important;
+}
+
+body.studio-bg #bg-toggle {
+  color: #ffc72c !important;
+  background-color: rgba(255, 199, 44, 0.15);
+}
+
+/* Social icons no hero */
+body.studio-bg #hero a.text-3xl {
+  color: #c9b896 !important;
+}
+
+body.studio-bg #hero a.text-3xl:hover {
+  color: #ffc72c !important;
+}
+
+/* ——— Mobile ——— */
+@media (max-width: 768px) {
+  .studio-bg-photo {
+    background-position: 65% center;
+    transform: scale(1.12);
+  }
+
+  .studio-bg-photo {
+    filter: grayscale(10%) contrast(1.05) brightness(0.82) saturate(1.2);
+  }
+
+  .studio-bg-vignette {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.5) 0%,
+        rgba(0, 0, 0, 0.2) 45%,
+        rgba(0, 0, 0, 0.55) 100%
+      );
+  }
+
+  body.studio-bg #hero {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.55) 0%,
+      rgba(0, 0, 0, 0.15) 50%,
+      rgba(0, 0, 0, 0.35) 100%
+    ) !important;
+  }
+
+  body.studio-bg #hero {
+    min-height: min(88vh, 720px);
+    min-height: min(88dvh, 720px);
+    padding-top: 1rem;
+    padding-bottom: 0;
+  }
+
+  body.studio-bg section.studio-section:nth-of-type(odd)::after,
+  body.studio-bg section.studio-section:nth-of-type(even)::after {
+    height: clamp(36px, 10vw, 56px);
+  }
+
+  body.studio-bg section.studio-section:nth-of-type(even)::before {
+    top: clamp(-32px, -8vw, -48px);
+    height: clamp(32px, 8vw, 52px);
+  }
+
+  body.studio-bg section.studio-section:nth-of-type(even) {
+    padding-top: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body.studio-bg #hero h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.2 !important;
+  }
+}
