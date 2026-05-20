@@ -44,52 +44,32 @@ themeToggleBtn.addEventListener("click", function () {
 // Gallery slider with thumbnails
 var galleryData = [
   {
-    src: "https://images.unsplash.com/photo-1496317899792-9d7dbcd928a1?auto=format&fit=crop&w=1200&q=80",
+    src: "images/mywork/work-01.jpg",
     alt: "Tatuagem no braço",
     title: "Traço fino e delicado",
     description:
       "Detalhes da tattoo com acabamento preciso e suave no contorno.",
   },
   {
-    src: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80",
+    src: "images/mywork/work-02.jpg",
     alt: "Tatuagem no ombro",
     title: "Sombreamento suave",
     description:
       "Tatuagens que ganham profundidade natural com sombreados bem trabalhados.",
   },
   {
-    src: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?auto=format&fit=crop&w=1200&q=80",
+    src: "images/mywork/work-03.jpg",
     alt: "Tatuagem na mão",
     title: "Estilo autoral",
     description:
       "Peças únicas feitas para combinar com a personalidade de cada cliente.",
   },
   {
-    src: "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1200&q=80",
+    src: "images/mywork/work-04.jpg",
     alt: "Tatuagem no peito",
     title: "Design com atitude",
     description:
       "Tatuagens com contraste e estilo, perfeitas para quem quer causar impacto.",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80",
-    alt: "Tatuagem de flores",
-    title: "Floral elegante",
-    description:
-      "Traços suaves e orgânicos para uma tatuagem feminina e sofisticada.",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80",
-    alt: "Tatuagem geométrica",
-    title: "Geométrico moderno",
-    description:
-      "Linhas e formas precisas que criam um efeito visual marcante.",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=1200&q=80",
-    alt: "Tatuagem minimalista",
-    title: "Minimalismo com significado",
-    description: "Menos é mais: pequenos símbolos com grande personalidade.",
   },
 ];
 
