@@ -23,7 +23,9 @@ body.studio-bg {
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.45s ease, visibility 0.45s ease;
+  transition:
+    opacity 0.45s ease,
+    visibility 0.45s ease;
 }
 
 body.studio-bg #studio-bg-layer {
@@ -168,8 +170,8 @@ body.studio-bg section.studio-section:nth-of-type(odd)::after {
   display: block;
   height: clamp(44px, 8vw, 80px);
   width: 100%;
-  background: url("../images/studio/torn-to-light.svg") center bottom / 100% 100%
-    no-repeat;
+  background: url("../images/studio/torn-to-light.svg") center bottom / 100%
+    100% no-repeat;
   filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.4));
   pointer-events: none;
   margin-top: 0.5rem;
@@ -415,13 +417,12 @@ body.studio-bg #hero a.text-3xl:hover {
   }
 
   .studio-bg-vignette {
-    background:
-      linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0.5) 0%,
-        rgba(0, 0, 0, 0.2) 45%,
-        rgba(0, 0, 0, 0.55) 100%
-      );
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.2) 45%,
+      rgba(0, 0, 0, 0.55) 100%
+    );
   }
 
   body.studio-bg #hero {
@@ -541,7 +542,11 @@ body.studio-bg #hero a.text-3xl:hover {
 }
 
 /* Contorno suave: light = preto; dark ou paleta = branco */
-html:not(.dark) body:not(.studio-bg) #gallery-thumbnails .gallery-thumb[data-pos="center"] img {
+html:not(.dark)
+  body:not(.studio-bg)
+  #gallery-thumbnails
+  .gallery-thumb[data-pos="center"]
+  img {
   box-shadow:
     0 10px 28px -8px rgb(0 0 0 / 0.22),
     0 0 0 2.5px rgb(0 0 0 / 0.7);
@@ -571,7 +576,9 @@ body.studio-bg #gallery-thumbnails .gallery-thumb[data-pos="center"] img {
   border-radius: 1.5rem;
   border: 1px solid rgb(229 231 235);
   background-color: rgb(249 250 251);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .dark .materials-bento-card {
