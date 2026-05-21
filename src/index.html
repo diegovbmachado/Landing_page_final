@@ -374,8 +374,15 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
               </svg>
             </button>
-            <div class="w-full max-w-3xl overflow-hidden">
-              <div id="gallery-thumbnails" class="flex justify-center gap-3 transition-all duration-300"></div>
+            <div
+              id="gallery-thumbs-swipe"
+              class="w-full max-w-3xl overflow-hidden"
+              aria-label="Carrossel de miniaturas"
+            >
+              <div
+                id="gallery-thumbnails"
+                class="flex justify-center items-center gap-3"
+              ></div>
             </div>
             <button
               id="thumb-next"

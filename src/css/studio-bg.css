@@ -408,3 +408,42 @@ body.studio-bg #hero a.text-3xl:hover {
     line-height: 1.2 !important;
   }
 }
+
+/* Carrossel de miniaturas — foco central e loop infinito */
+#gallery-thumbs-swipe {
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#gallery-thumbnails .gallery-thumb {
+  flex-shrink: 0;
+  border: none;
+  background: transparent;
+  padding: 0.25rem;
+  cursor: pointer;
+  border-radius: 1.5rem;
+  overflow: visible;
+  transition: opacity 0.3s ease;
+}
+
+#gallery-thumbnails .gallery-thumb img {
+  display: block;
+  border-radius: 1.5rem;
+  transform: scale(0.92);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform-origin: center center;
+}
+
+#gallery-thumbnails .gallery-thumb.focused img {
+  transform: scale(1.1);
+  box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.2);
+}
+
+#gallery-thumbnails .gallery-thumb:not(.focused) {
+  opacity: 0.85;
+}
+
+#gallery-thumbnails .gallery-thumb.focused {
+  opacity: 1;
+}
