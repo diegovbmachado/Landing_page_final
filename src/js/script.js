@@ -173,11 +173,11 @@ var galleryNext = document.getElementById("gallery-next");
 var thumbPrev = document.getElementById("thumb-prev");
 var thumbNext = document.getElementById("thumb-next");
 
-var THUMB_VISIBLE = 4;
-var CENTER_SLOT = Math.floor(THUMB_VISIBLE / 2);
-var thumbOrder = galleryData.map(function (_, index) {
-  return index;
-});
+var THUMB_TOTAL = 4;
+var CENTER_SLOT = 2;
+var SLOT_POSITIONS = ["hidden-left", "left", "center", "right"];
+var thumbOrder = [2, 3, 0, 1];
+var thumbButtons = null;
 var SWIPE_THRESHOLD = 40;
 var touchStartX = 0;
 
@@ -213,8 +213,8 @@ function rotateToCenter(dataIndex) {
     return;
   }
 
-  var stepsForward = (slotIndex - CENTER_SLOT + THUMB_VISIBLE) % THUMB_VISIBLE;
-  var stepsBackward = (CENTER_SLOT - slotIndex + THUMB_VISIBLE) % THUMB_VISIBLE;
+  var stepsForward = (slotIndex - CENTER_SLOT + THUMB_TOTAL) % THUMB_TOTAL;
+  var stepsBackward = (CENTER_SLOT - slotIndex + THUMB_TOTAL) % THUMB_TOTAL;
 
   if (stepsForward <= stepsBackward) {
     for (var i = 0; i < stepsForward; i++) {
@@ -230,25 +230,33 @@ function rotateToCenter(dataIndex) {
 function renderGallery() {
   updateMainPanel();
 
-  galleryThumbnails.innerHTML = thumbOrder
-    .map(function (dataIndex, slotIndex) {
-      var item = galleryData[dataIndex];
-      var isFocused = slotIndex === CENTER_SLOT;
-      return (
-        '<button type="button" data-index="' +
-        dataIndex +
-        '" class="gallery-thumb focus:outline-none' +
-        (isFocused ? " focused" : "") +
-        '">' +
-        '<img src="' +
-        item.src +
-        '" alt="' +
-        item.alt +
-        '" class="h-36 w-36 object-cover sm:h-[168px] sm:w-[168px]" />' +
-        "</button>"
-      );
-    })
-    .join("");
+  if (!thumbButtons) {
+    thumbButtons = {};
+    galleryData.forEach(function (item, dataIndex) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.dataset.index = String(dataIndex);
+      btn.className = "gallery-thumb focus:outline-none";
+      var img = document.createElement("img");
+      img.src = item.src;
+      img.alt = item.alt;
+      img.className = "gallery-thumb-img";
+      img.width = 168;
+      img.height = 168;
+      btn.appendChild(img);
+      galleryThumbnails.appendChild(btn);
+      thumbButtons[dataIndex] = btn;
+    });
+  }
+
+  galleryData.forEach(function (_, dataIndex) {
+    var slotIndex = thumbOrder.indexOf(dataIndex);
+    var btn = thumbButtons[dataIndex];
+    var isFocused = slotIndex === CENTER_SLOT;
+    btn.dataset.pos = SLOT_POSITIONS[slotIndex];
+    btn.classList.toggle("focused", isFocused);
+    btn.setAttribute("aria-hidden", slotIndex === 0 ? "true" : "false");
+  });
 }
 
 if (galleryPrev) {
