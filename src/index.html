@@ -327,7 +327,7 @@
       <div class="py-12 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
         <div class="max-w-3xl mx-auto text-center mb-10 lg:mb-12">
           <span
-            class="inline-flex items-center px-3 py-1 mb-4 text-sm font-semibold uppercase tracking-wider text-blue-700 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-600"
+            class="bastidores-badge inline-flex items-center px-3 py-1 mb-4 text-sm font-semibold uppercase tracking-wider text-blue-700 bg-blue-100 rounded-full dark:text-blue-100 dark:bg-blue-600"
           >
             Bastidores &amp; Segurança
           </span>
@@ -353,7 +353,7 @@
                 garantem saturação, contraste e segurança em cada traço.
               </p>
             </div>
-            <figure class="materials-bento-figure materials-bento-figure--landscape">
+            <figure class="materials-bento-figure materials-bento-figure--landscape materials-bento-figure--zoomable">
               <img
                 src="images/materials/1-tintas.jpg"
                 alt="Pigmentos e tintas para tatuagem"
@@ -370,7 +370,7 @@
                 e embalados individualmente. Traço estável e máxima precisão.
               </p>
             </div>
-            <figure class="materials-bento-figure materials-bento-figure--portrait">
+            <figure class="materials-bento-figure materials-bento-figure--portrait materials-bento-figure--zoomable">
               <img
                 src="images/materials/1-agulhas.jpg"
                 alt="Cartuchos e agulhas esterilizadas"
@@ -398,7 +398,7 @@
                 a pele recém-tatuada nos primeiros dias.
               </p>
             </div>
-            <figure class="materials-bento-figure materials-bento-figure--pos-photo">
+            <figure class="materials-bento-figure materials-bento-figure--pos-photo materials-bento-figure--zoomable">
               <img
                 src="images/materials/1-pomadas.jpg"
                 alt="Pomadas de cicatrização pós-tatuagem"
@@ -974,6 +974,32 @@
         </div>
       </div>
     </footer>
+
+    <div
+      id="materials-lightbox"
+      class="materials-lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+      aria-label="Visualização ampliada do material"
+      hidden
+    >
+      <div class="materials-lightbox-backdrop" data-lightbox-close></div>
+      <div class="materials-lightbox-panel">
+        <button
+          type="button"
+          class="materials-lightbox-close"
+          aria-label="Fechar"
+          data-lightbox-close
+        >
+          &times;
+        </button>
+        <figure class="materials-lightbox-frame">
+          <img id="materials-lightbox-img" src="" alt="" />
+        </figure>
+        <p id="materials-lightbox-caption" class="materials-lightbox-caption"></p>
+      </div>
+    </div>
 
     <script src="js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>

@@ -309,3 +309,60 @@ if (galleryThumbsSwipe) {
 }
 
 renderGallery();
+
+// Lightbox materiais (desktop)
+(function () {
+  var lightbox = document.getElementById("materials-lightbox");
+  var lightboxImg = document.getElementById("materials-lightbox-img");
+  var lightboxCaption = document.getElementById("materials-lightbox-caption");
+  var desktopMedia = window.matchMedia("(min-width: 1024px)");
+
+  if (!lightbox || !lightboxImg) {
+    return;
+  }
+
+  var zoomImages = document.querySelectorAll(
+    "#bastidores .materials-bento-figure--zoomable img",
+  );
+
+  function openLightbox(img) {
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    if (lightboxCaption) {
+      lightboxCaption.textContent = img.alt;
+    }
+    lightbox.hidden = false;
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeLightbox() {
+    lightbox.hidden = true;
+    lightbox.setAttribute("aria-hidden", "true");
+    lightboxImg.removeAttribute("src");
+    lightboxImg.alt = "";
+    if (lightboxCaption) {
+      lightboxCaption.textContent = "";
+    }
+    document.body.style.overflow = "";
+  }
+
+  zoomImages.forEach(function (img) {
+    img.addEventListener("click", function () {
+      if (!desktopMedia.matches) {
+        return;
+      }
+      openLightbox(img);
+    });
+  });
+
+  lightbox.querySelectorAll("[data-lightbox-close]").forEach(function (el) {
+    el.addEventListener("click", closeLightbox);
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && !lightbox.hidden) {
+      closeLightbox();
+    }
+  });
+})();
