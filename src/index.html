@@ -14,10 +14,13 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <!-- Script que gerencia o tema antes da renderização para evitar "piscar" de cores -->
     <script src="js/head.js"></script>
+    <!-- CSS específico para o modo Studio/Paleta -->
     <link rel="stylesheet" href="css/studio-bg.css" />
     <title>Drew Studio</title>
   </head>
+  <!-- ID home usado para âncora de scroll ao topo -->
   <body id="home">
     <div id="studio-bg-layer" aria-hidden="true">
       <div class="studio-bg-photo"></div>
@@ -31,6 +34,7 @@
       <div
         class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
       >
+        <!-- Logotipo com troca automática entre claro/escuro via classes CSS -->
         <a href="#home" class="flex items-center space-x-3 rtl:space-x-reverse">
           <img
             src="images/logo/logo-light.png"
@@ -43,6 +47,7 @@
             alt="Drew Logo"
           />
         </a>
+        <!-- Botões de ação da Navbar -->
         <div class="flex md:order-2 space-x-3 md:space-x-1 rtl:space-x-reverse">
           <a
             href="https://wa.me/5521973765920?text=vi%20seu%20site%20e%20gostaria%20de%20mais%20informa%C3%A7oes%20Bruno."
@@ -52,6 +57,7 @@
           >
             Contatar
           </a>
+          <!-- Botão para ativar/desativar o Modo Studio (Fundo de foto) -->
           <button
             id="bg-toggle"
             type="button"
@@ -70,6 +76,7 @@
               aria-hidden="true"
             ></i>
           </button>
+          <!-- Botão para alternar entre Dark Mode e Light Mode -->
           <button
             id="theme-toggle"
             type="button"
@@ -100,6 +107,7 @@
               ></path>
             </svg>
           </button>
+          <!-- Botão de menu hambúrguer para dispositivos móveis -->
           <button
             data-collapse-toggle="navbar-sticky"
             type="button"
@@ -125,6 +133,7 @@
             </svg>
           </button>
         </div>
+        <!-- Links de navegação (Visíveis em Desktop, colapsados em Mobile) -->
         <div
           class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
           id="navbar-sticky"
@@ -185,6 +194,7 @@
         <h1 
           class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white"
         >
+          <!-- Título principal com destaque em azul -->
           Transformamos o reflexo da sua alma
           <br />
           em significado
@@ -198,6 +208,7 @@
           lembrança. É eternizar o que importa. Porque no fim, a tatuagem não é
           sobre aparência, é sobre significado.
         </p>
+        <!-- Chamadas para ação (CTAs) -->
         <div
           class="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4"
         >
@@ -237,6 +248,7 @@
             Assistir vídeo
           </a>
         </div>
+        <!-- Seção de links para redes sociais no Hero -->
         <div
           id="redes"
           class="scroll-mt-24 px-4 mx-auto text-center md:max-w-screen-md lg:max-w-screen-lg lg:px-12 pt-8"
@@ -302,6 +314,7 @@
           </p>
           <p>
 
+
           </p>
         </div>
         <div class="grid grid-cols-2 gap-4 mt-8">
@@ -343,6 +356,7 @@
           </p>
         </div>
 
+        <!-- Bento Grid: Disposição irregular de cards para materiais -->
         <div class="materials-bento">
           <article class="materials-bento-card materials-bento-card--pigmentos">
             <div class="materials-bento-body">
@@ -410,7 +424,7 @@
       </div>
     </section>
 
-    <!-- FOTOS DO TRABALHO finalizado-->
+    <!-- FOTOS DO TRABALHO finalizado: Galeria interativa -->
 
     <section id="gallery" class="studio-section scroll-mt-24 bg-white dark:bg-gray-900">
       <div class="py-16 px-4 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
@@ -440,6 +454,7 @@
         </div>
 
         <div class="mt-12 max-w-5xl mx-auto">
+          <!-- Painel principal da foto selecionada na galeria -->
           <div class="mx-auto max-w-xl overflow-hidden rounded-[2rem] border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
             <div class="relative">
               <div class="absolute inset-0 z-30 flex items-center justify-between px-3 pointer-events-none">
@@ -462,6 +477,7 @@
             </div>
           </div>
 
+          <!-- Controles e carrossel de miniaturas -->
           <div class="mt-6 flex items-center justify-center gap-4">
             <button
               id="thumb-prev"
@@ -975,6 +991,7 @@
       </div>
     </footer>
 
+    <!-- Estrutura do Lightbox: Escondido por padrão, ativado via JS na seção Bastidores -->
     <div
       id="materials-lightbox"
       class="materials-lightbox"
@@ -1001,6 +1018,7 @@
       </div>
     </div>
 
+    <!-- Scripts de funcionalidade principal e framework Flowbite -->
     <script src="js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
   </body>

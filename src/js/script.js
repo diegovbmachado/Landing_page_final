@@ -1,13 +1,16 @@
+// Seleção de elementos principais para controle de tema e fundo especial
 var themeToggleDarkIcon = document.getElementById("theme-toggle-dark-icon");
 var themeToggleLightIcon = document.getElementById("theme-toggle-light-icon");
 var bgToggleBtn = document.getElementById("bg-toggle");
 var bgToggleOffIcon = document.getElementById("bg-toggle-off-icon");
 var bgToggleOnIcon = document.getElementById("bg-toggle-on-icon");
 
+// Verifica se o modo "Studio BG" (fundo estilizado) está ativo no body
 function isStudioBgActive() {
   return document.body.classList.contains("studio-bg");
 }
 
+// Atualiza os ícones do botão de alternância de fundo com base no estado atual
 function updateBgToggleIcons() {
   if (!bgToggleOffIcon || !bgToggleOnIcon) return;
   if (isStudioBgActive()) {
@@ -19,18 +22,21 @@ function updateBgToggleIcons() {
   }
 }
 
+// Desativa o modo Studio e remove a preferência do armazenamento local
 function disableStudioBg() {
   document.body.classList.remove("studio-bg");
   localStorage.removeItem("studio-bg");
   updateBgToggleIcons();
 }
 
+// Ativa o modo Studio e salva a preferência no localStorage
 function enableStudioBg() {
   document.body.classList.add("studio-bg");
   localStorage.setItem("studio-bg", "on");
   updateBgToggleIcons();
 }
 
+// Inicialização: verifica se o usuário já tinha ativado o modo Studio anteriormente
 if (localStorage.getItem("studio-bg") === "on") {
   enableStudioBg();
 } else {
@@ -38,6 +44,7 @@ if (localStorage.getItem("studio-bg") === "on") {
 }
 
 if (bgToggleBtn) {
+  // Alterna o estado do modo Studio ao clicar no botão de paleta
   bgToggleBtn.addEventListener("click", function () {
     if (isStudioBgActive()) {
       disableStudioBg();
@@ -47,11 +54,13 @@ if (bgToggleBtn) {
   });
 }
 
+// Calcula a altura da navbar para que a rolagem suave não pare embaixo do menu
 function getNavOffset() {
   var nav = document.querySelector("nav.studio-nav");
   return nav ? nav.offsetHeight + 12 : 88;
 }
 
+// Função genérica para realizar a rolagem suave até um elemento específico
 function scrollToSection(hash, behavior) {
   if (!hash || hash === "#") return;
   var target = document.querySelector(hash);
@@ -61,6 +70,7 @@ function scrollToSection(hash, behavior) {
   window.scrollTo({ top: Math.max(0, top), behavior: behavior || "smooth" });
 }
 
+// Fecha o menu mobile automaticamente após clicar em um link (para telas pequenas)
 function closeMobileNav() {
   var menu = document.getElementById("navbar-sticky");
   var toggle = document.querySelector('[data-collapse-toggle="navbar-sticky"]');
@@ -69,6 +79,7 @@ function closeMobileNav() {
   }
 }
 
+// Aplica a lógica de scroll suave a todos os links internos que começam com #
 document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
   anchor.addEventListener("click", function (e) {
     var href = this.getAttribute("href");
@@ -81,13 +92,14 @@ document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
   });
 });
 
+// Se o usuário acessar a página com uma # na URL, rola automaticamente para a seção
 if (window.location.hash) {
   requestAnimationFrame(function () {
     scrollToSection(window.location.hash, "auto");
   });
 }
 
-// Change the icons inside the button based on previous settings
+// Configura os ícones do tema (Lua/Sol) baseado na preferência salva ou do sistema operacional
 if (
   localStorage.getItem("color-theme") === "dark" ||
   (!("color-theme" in localStorage) &&
@@ -100,10 +112,12 @@ if (
 
 var themeToggleBtn = document.getElementById("theme-toggle");
 
+// Lógica para alternar entre Dark Mode e Light Mode
 themeToggleBtn.addEventListener("click", function () {
+  // Ao trocar de tema, desativa o modo Studio para evitar conflitos visuais imediatos
   disableStudioBg();
 
-  // toggle icons inside button
+  // Alterna a visibilidade dos ícones de tema
   themeToggleDarkIcon.classList.toggle("hidden");
   themeToggleLightIcon.classList.toggle("hidden");
 
@@ -129,7 +143,7 @@ themeToggleBtn.addEventListener("click", function () {
   }
 });
 
-// Gallery slider with thumbnails
+// Dados que alimentam o carrossel de fotos da galeria
 var galleryData = [
   {
     src: "images/mywork/work-01.jpg",
@@ -173,20 +187,24 @@ var galleryNext = document.getElementById("gallery-next");
 var thumbPrev = document.getElementById("thumb-prev");
 var thumbNext = document.getElementById("thumb-next");
 
+// Configurações de exibição do carrossel: 4 fotos no total, posição 2 é o centro
 var THUMB_TOTAL = 4;
 var CENTER_SLOT = 2;
 var SLOT_POSITIONS = ["hidden-left", "left", "center", "right"];
-var thumbOrder = [2, 3, 0, 1];
+var thumbOrder = [2, 3, 0, 1]; // Ordem inicial dos índices dos dados
 var thumbButtons = null;
-var SWIPE_THRESHOLD = 40;
+var SWIPE_THRESHOLD = 40; // Sensibilidade do deslize (touch)
 var touchStartX = 0;
 
+// Retorna o índice da imagem que deve estar no centro
 function getCenterDataIndex() {
   return thumbOrder[CENTER_SLOT];
 }
 
+// Atualiza a imagem grande e os textos com base na foto central do carrossel
 function updateMainPanel() {
   var activeItem = galleryData[getCenterDataIndex()];
+  if (!activeItem) return;
   galleryMainImage.src = activeItem.src;
   galleryMainImage.alt = activeItem.alt;
   galleryMainTitle.textContent = activeItem.title;
@@ -203,6 +221,7 @@ function rotateThumbsPrev() {
   renderGallery();
 }
 
+// Move o carrossel até que a miniatura clicada chegue ao centro
 function rotateToCenter(dataIndex) {
   if (thumbOrder[CENTER_SLOT] === dataIndex) {
     return;
@@ -227,10 +246,12 @@ function rotateToCenter(dataIndex) {
   }
 }
 
+// Renderiza as miniaturas e aplica as classes de posição (CSS transitions fazem a animação)
 function renderGallery() {
   updateMainPanel();
 
   if (!thumbButtons) {
+    // Cria os botões das miniaturas apenas na primeira execução
     thumbButtons = {};
     galleryData.forEach(function (item, dataIndex) {
       var btn = document.createElement("button");
@@ -249,6 +270,7 @@ function renderGallery() {
     });
   }
 
+  // Atualiza as posições (data-pos) de cada miniatura para disparar as transições CSS
   galleryData.forEach(function (_, dataIndex) {
     var slotIndex = thumbOrder.indexOf(dataIndex);
     var btn = thumbButtons[dataIndex];
@@ -259,6 +281,7 @@ function renderGallery() {
   });
 }
 
+// Eventos de clique nos controles da galeria
 if (galleryPrev) {
   galleryPrev.addEventListener("click", rotateThumbsPrev);
 }
@@ -275,6 +298,7 @@ if (thumbNext) {
   thumbNext.addEventListener("click", rotateThumbsNext);
 }
 
+// Permite clicar diretamente em uma miniatura para centralizá-la
 galleryThumbnails.addEventListener("click", function (event) {
   var button = event.target.closest("button[data-index]");
   if (!button) {
@@ -283,6 +307,7 @@ galleryThumbnails.addEventListener("click", function (event) {
   rotateToCenter(Number(button.dataset.index));
 });
 
+// Suporte a gestos de deslize (swipe) em dispositivos móveis
 if (galleryThumbsSwipe) {
   galleryThumbsSwipe.addEventListener(
     "touchstart",
@@ -310,21 +335,23 @@ if (galleryThumbsSwipe) {
 
 renderGallery();
 
-// Lightbox materiais (desktop)
+// Lógica do Lightbox (zoom de imagem) para a seção de Materiais
 (function () {
   var lightbox = document.getElementById("materials-lightbox");
   var lightboxImg = document.getElementById("materials-lightbox-img");
   var lightboxCaption = document.getElementById("materials-lightbox-caption");
-  var desktopMedia = window.matchMedia("(min-width: 1024px)");
+  var desktopMedia = window.matchMedia("(min-width: 1024px)"); // Ativo apenas em telas grandes
 
   if (!lightbox || !lightboxImg) {
     return;
   }
 
+  // Seleciona imagens que possuem a classe de zoom
   var zoomImages = document.querySelectorAll(
     "#bastidores .materials-bento-figure--zoomable img",
   );
 
+  // Exibe o modal com a imagem clicada
   function openLightbox(img) {
     lightboxImg.src = img.src;
     lightboxImg.alt = img.alt;
@@ -336,6 +363,7 @@ renderGallery();
     document.body.style.overflow = "hidden";
   }
 
+  // Esconde o modal e limpa os atributos
   function closeLightbox() {
     lightbox.hidden = true;
     lightbox.setAttribute("aria-hidden", "true");
@@ -360,6 +388,7 @@ renderGallery();
     el.addEventListener("click", closeLightbox);
   });
 
+  // Fecha o lightbox ao pressionar a tecla ESC
   document.addEventListener("keydown", function (event) {
     if (event.key === "Escape" && !lightbox.hidden) {
       closeLightbox();

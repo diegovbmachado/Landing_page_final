@@ -4,8 +4,10 @@ body.studio-bg #bastidores {
   background: transparent !important;
   background-color: transparent !important;
 }
+
 /* Modo estúdio — imagem de fundo, granulado e divisões papel rasgado */
 
+/* Variáveis de cores exclusivas para o tema Studio (Yellow Wolf) */
 body.studio-bg {
   --studio-bg-dark: #0e0a08;
   --studio-bg-dark-card: #0e0a08;
@@ -16,6 +18,7 @@ body.studio-bg {
   --studio-accent-deep: #c98a00;
 }
 
+/* Camada de fundo fixa que contém a imagem e o efeito de granulado */
 #studio-bg-layer {
   position: fixed;
   inset: 0;
@@ -50,6 +53,7 @@ body.studio-bg #hero {
   scroll-margin-top: 5.5rem;
 }
 
+/* Configuração da imagem de fundo do Hero no modo Studio */
 .studio-bg-photo {
   position: absolute;
   inset: 0;
@@ -61,6 +65,7 @@ body.studio-bg #hero {
   filter: grayscale(15%) contrast(1.08) brightness(0.78) saturate(1.15);
 }
 
+/* Vinheta para escurecer as bordas e melhorar a leitura do texto */
 .studio-bg-vignette {
   position: absolute;
   inset: 0;
@@ -79,6 +84,7 @@ body.studio-bg #hero {
     );
 }
 
+/* Efeito de ruído/granulado para textura de papel/filme antigo */
 .studio-bg-grain {
   position: absolute;
   inset: 0;
@@ -141,6 +147,7 @@ body.studio-bg .studio-section {
   background-color: transparent !important;
 }
 
+/* Ajuste da altura e degradê do Hero para garantir legibilidade */
 /* Hero / Início: foto bem visível, película só à esquerda (legibilidade do texto) */
 body.studio-bg #hero {
   min-height: min(92vh, 900px);
@@ -165,6 +172,7 @@ body.studio-bg section.studio-section:nth-of-type(odd) {
   background: var(--studio-bg-dark) !important;
 }
 
+/* Efeito de papel rasgado na parte inferior das seções escuras */
 body.studio-bg section.studio-section:nth-of-type(odd)::after {
   content: "";
   display: block;
@@ -184,6 +192,7 @@ body.studio-bg section.studio-section:nth-of-type(even) {
   padding-top: clamp(1.5rem, 4vw, 2.5rem);
 }
 
+/* Efeito de papel rasgado (invertido) na parte superior das seções creme */
 body.studio-bg section.studio-section:nth-of-type(even)::before {
   content: "";
   display: block;
@@ -200,6 +209,7 @@ body.studio-bg section.studio-section:nth-of-type(even)::before {
   z-index: 2;
 }
 
+/* Efeito de papel rasgado na parte inferior das seções creme */
 body.studio-bg section.studio-section:nth-of-type(even)::after {
   content: "";
   display: block;
@@ -405,6 +415,7 @@ body.studio-bg #hero a.text-3xl:hover {
   color: #ffc72c !important;
 }
 
+/* Ajustes de responsividade para o modo Studio em dispositivos móveis */
 /* ——— Mobile ——— */
 @media (max-width: 768px) {
   .studio-bg-photo {
@@ -463,12 +474,14 @@ body.studio-bg #hero a.text-3xl:hover {
   }
 }
 
+/* Lógica de animação e posicionamento do Carrossel de Miniaturas */
 /* Carrossel de miniaturas — 3 visíveis, 1 oculta, foco central animado */
 #gallery-thumbs-swipe {
   touch-action: pan-y;
   -webkit-user-select: none;
   user-select: none;
 }
+
 
 #gallery-thumbnails {
   position: relative;
@@ -479,6 +492,7 @@ body.studio-bg #hero a.text-3xl:hover {
   overflow: hidden;
 }
 
+/* Estilo base de cada miniatura */
 #gallery-thumbnails .gallery-thumb {
   position: absolute;
   top: 50%;
@@ -508,12 +522,14 @@ body.studio-bg #hero a.text-3xl:hover {
   transition: box-shadow 0.4s ease;
 }
 
+/* Esconde as fotos que estão fora das 3 posições principais */
 #gallery-thumbnails .gallery-thumb[data-pos="hidden-left"],
 #gallery-thumbnails .gallery-thumb[data-pos="hidden-right"] {
   opacity: 0;
   pointer-events: none;
   z-index: 0;
 }
+
 
 #gallery-thumbnails .gallery-thumb[data-pos="hidden-left"] {
   transform: translate(calc(-50% - 13rem), -50%) scale(0.55);
@@ -523,6 +539,7 @@ body.studio-bg #hero a.text-3xl:hover {
   transform: translate(calc(-50% + 13rem), -50%) scale(0.55);
 }
 
+/* Miniatura à esquerda do centro */
 #gallery-thumbnails .gallery-thumb[data-pos="left"] {
   opacity: 0.88;
   z-index: 1;
@@ -535,12 +552,14 @@ body.studio-bg #hero a.text-3xl:hover {
   transform: translate(calc(-50% + 7.25rem), -50%) scale(0.86);
 }
 
+/* Miniatura centralizada e em destaque */
 #gallery-thumbnails .gallery-thumb[data-pos="center"] {
   opacity: 1;
   z-index: 3;
   transform: translate(-50%, -50%) scale(1.14);
 }
 
+/* Sombra dinâmica no centro baseada no tema ativo */
 /* Contorno suave: light = preto; dark ou paleta = branco */
 html:not(.dark)
   body:not(.studio-bg)
@@ -559,6 +578,7 @@ body.studio-bg #gallery-thumbnails .gallery-thumb[data-pos="center"] img {
     0 0 0 2.5px rgb(255 255 255 / 0.88);
 }
 
+/* Layout Bento Grid para a seção de materiais */
 /* Bento — materiais & biossegurança */
 .materials-bento {
   display: grid;
@@ -683,6 +703,7 @@ body.studio-bg #gallery-thumbnails .gallery-thumb[data-pos="center"] img {
   }
 }
 
+/* Configuração do grid em telas grandes (Desktop) */
 @media (min-width: 1024px) {
   .materials-bento {
     grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -774,6 +795,7 @@ body.studio-bg #gallery-thumbnails .gallery-thumb[data-pos="center"] img {
   }
 }
 
+/* Estilização do modal de visualização de imagem (Lightbox) */
 /* Lightbox materiais — desktop */
 .materials-lightbox {
   position: fixed;
